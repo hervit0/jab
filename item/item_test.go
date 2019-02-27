@@ -101,7 +101,7 @@ func newItemService() (*ItemService, error) {
 		return nil, fmt.Errorf("failed to set up table. %s", err)
 	}
 
-	db, err := newDynamoTable(tableName, "http://localhost:8000")
+	db, err := newDynamoTable(tableName, "http://127.0.0.1:8000")
 	if err != nil {
 		return nil, err
 	}
