@@ -2,7 +2,7 @@ package item
 
 import (
 	"fmt"
-	"github.com/nathmclean/dynamodb-local-testing/test_utils"
+	"github.com/hervit0/jab/test_utils"
 	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
