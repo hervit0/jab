@@ -10,7 +10,7 @@ import (
 // Creates a new, randomly named, Dynamo table using the interface provided
 func CreateTable(table interface{}) (string, error) {
 	cfg := aws.Config{
-		Endpoint:                      aws.String("http://localhost:9000"),
+		Endpoint:                      aws.String("http://localhost:8000"),
 		Region:                        aws.String("eu-west-2"),
 		CredentialsChainVerboseErrors: aws.Bool(true),
 	}
