@@ -24,6 +24,10 @@ jobs:
     working_directory: /go/src/github.com/hervit0/jab
     steps:
       - checkout
+      - request-approval:
+          type: approval
+          requires:
+            - build
       # - setup_remote_docker
       # - run: dep ensure
       - run: make
