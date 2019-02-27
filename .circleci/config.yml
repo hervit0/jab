@@ -24,7 +24,7 @@ jobs:
     working_directory: /go/src/github.com/hervit0/jab
     steps:
       - checkout
-      - run: sleep 30
+      - run: sleep 120
       # - setup_remote_docker
       # - run: dep ensure
       - run: make
