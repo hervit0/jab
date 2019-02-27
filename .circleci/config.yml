@@ -3,7 +3,7 @@
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2
 jobs:
-  build:
+  buildJob:
     docker:
       # specify the version
       - image: circleci/golang:1.11
@@ -24,10 +24,8 @@ jobs:
     working_directory: /go/src/github.com/hervit0/jab
     steps:
       - checkout
-      - request-approval:
-          type: approval
-          requires:
-            - build
+      - hold: # <<< A job that will require manual approval in the CircleCI web application.
+        type: approval
       # - setup_remote_docker
       # - run: dep ensure
       - run: make
