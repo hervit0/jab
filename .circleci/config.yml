@@ -24,8 +24,13 @@ jobs:
     working_directory: /go/src/github.com/hervit0/jab
     steps:
       - checkout
-      - hold: # <<< A job that will require manual approval in the CircleCI web application.
-        type: approval
+      - run: sleep 30
       # - setup_remote_docker
       # - run: dep ensure
       - run: make
+
+workflows:
+  version: 2
+  buildWorkflow:
+    jobs:
+      - buildJob
