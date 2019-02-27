@@ -1,6 +1,7 @@
 dynamo:
   build: .
   ports:
-  - 9000:8000
+  # - 9000:8000 // for the other image
+  - 8000:8000
   command:
     -sharedDb

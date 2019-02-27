@@ -3,9 +3,9 @@ package test_utils
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
-	log "github.com/sirupsen/logrus"
 	"github.com/guregu/dynamo"
 	"github.com/rs/xid"
+	log "github.com/sirupsen/logrus"
 )
 
 // Creates a new, randomly named, Dynamo table using the interface provided
