@@ -7,7 +7,7 @@ jobs:
     docker:
       # specify the version
       - image: circleci/golang:1.11
-      - image: dwmkerr/dynamodb:41
+      - image: dwmkerr/dynamodb
         # custom entrypoint to limit RAM to 1G to prevent OOM on CircleCI 2.0.
         # https://circleci.com/docs/2.0/configuration-reference/#docker--machine--macosexecutor
         entrypoint: ["java", "-Xmx1G", "-jar", "DynamoDBLocal.jar"]
