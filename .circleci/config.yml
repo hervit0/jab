@@ -37,6 +37,15 @@ jobs:
       #       tar -xzf dynamodb-local.tgz
       #       java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
       - run:
+          name: Install Python and AWS
+          working_directory: /
+          command: |
+            apt-get -y -qq update
+            apt-get -y -qq install python3.4-dev
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            python3.4 get-pip.py --user
+            pip install awscli --upgrade --user
+      - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:8000 -timeout 120s
       # - setup_remote_docker
