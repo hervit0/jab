@@ -5,4 +5,4 @@
 # EXPOSE 8000
 # ENTRYPOINT ["java", "-jar", "DynamoDBLocal.jar"]
 
-FROM dwmkerr/dynamodb
+FROM circleci/dynamodb
