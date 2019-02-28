@@ -7,6 +7,9 @@ jobs:
     docker:
       # specify the version
       - image: circleci/golang:1.11
+        environment:
+          AWS_ACCESS_KEY_ID: test
+          AWS_SECRET_ACCESS_KEY: test
       - image: circleci/dynamodb
         # custom entrypoint to limit RAM to 1G to prevent OOM on CircleCI 2.0.
         # https://circleci.com/docs/2.0/configuration-reference/#docker--machine--macosexecutor
@@ -35,25 +38,25 @@ jobs:
       #       curl -k -L -o dynamodb-local.tgz http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz
       #       tar -xzf dynamodb-local.tgz
       #       java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
-      - run:
-          name: Install Python and AWS
-          working_directory: /
-          command: |
-            sudo apt-get -y -qq update
-            sudo apt-get -y -qq install python3.4-dev
-            curl -O https://bootstrap.pypa.io/get-pip.py
-            python3.4 get-pip.py --user
-            pip install awscli --upgrade --user
+      # - run:
+      #     name: Install Python and AWS
+      #     working_directory: /
+      #     command: |
+      #       sudo apt-get -y -qq update
+      #       sudo apt-get -y -qq install python3.4-dev
+      #       curl -O https://bootstrap.pypa.io/get-pip.py
+      #       python3.4 get-pip.py --user
+      #       pip install awscli --upgrade --user
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:8000 -timeout 120s
       # - setup_remote_docker
-      - run:
-          name: Pinging
-          command: aws dynamodb list-tables --endpoint-url http://localhost:8000
-      - run:
-          name: Pinging
-          command: aws dynamodb list-tables --endpoint-url http://127.0.0.1:8000
+      # - run:
+      #     name: Pinging
+      #     command: aws dynamodb list-tables --endpoint-url http://localhost:8000
+      # - run:
+      #     name: Pinging
+      #     command: aws dynamodb list-tables --endpoint-url http://127.0.0.1:8000
       - run: dep ensure
       - run: make
 
