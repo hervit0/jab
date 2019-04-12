@@ -4,8 +4,9 @@ import (
 	"fmt"
 )
 
-func greet() {
+func greet() string {
 	fmt.Println("Hello, 世界")
+	return "yo"
 }
 
 

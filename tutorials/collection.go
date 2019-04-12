@@ -1,11 +1,11 @@
 // go run tutorials/collection.go
-package main
+package tutorials
 
 import (
 	"fmt"
 )
 
-func main() {
+func collection() {
 	// Array
 	var a [5]int
 	fmt.Println("emp:", a)

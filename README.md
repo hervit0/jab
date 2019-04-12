@@ -11,3 +11,8 @@ Like: `go run tutorials/hello.go`
 ## Codewars stuff
 
 [Here](https://www.codewars.com/kata/search/go?q=&r%5B%5D=-7&beta=false)
+
+- `go test -count=1 -v ./...`
+- `go get -u -v github.com/golang/dep/cmd/dep`
+- `dep ensure -add github.com/onsi/ginkgo`
+- `dep ensure -v`

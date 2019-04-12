@@ -1,11 +1,11 @@
 // go run tutorials/hello.go
-package main
+package tutorials
 
 import (
 	"fmt"
 )
 
-func main() {
+func loop() {
 	i := 1
 	for i <= 3 {
 		fmt.Println(i)

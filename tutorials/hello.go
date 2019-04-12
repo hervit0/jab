@@ -1,5 +1,5 @@
 // go run tutorials/hello.go
-package main
+package tutorials
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 
 const wow string = "oh wow"
 
-func main() {
+func hello() {
 	fmt.Println("Hello, 世界")
 	fmt.Println("My favorite number is", rand.Intn(100))
 	fmt.Printf("Now you have %g problems.\n", math.Sqrt(7))
