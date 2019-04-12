@@ -16,3 +16,4 @@ Like: `go run tutorials/hello.go`
 - `go get -u -v github.com/golang/dep/cmd/dep`
 - `dep ensure -add github.com/onsi/ginkgo`
 - `dep ensure -v`
+- `go get -v -u github.com/onsi/ginkgo`

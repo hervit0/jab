@@ -5,9 +5,16 @@
 package helloworld
 
 import (
+  "testing"
+
 	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
+  . "github.com/onsi/gomega"
 )
+
+func TestGreet(t *testing.T) {
+  RegisterFailHandler(Fail)
+  RunSpecs(t, "Add that block and the 'testing' framework in the import")
+}
 
 var _ = Describe("Example Tests", func() {
 	It("should return string: 'hello world'", func() {
