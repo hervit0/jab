@@ -16,11 +16,15 @@ func CreateTable(table interface{}) (string, error) {
 		Region:                        aws.String("eu-west-2"),
 		CredentialsChainVerboseErrors: aws.Bool(true),
 	}
+
 	sess := session.Must(session.NewSession())
+
 	db := dynamo.New(sess, &cfg)
+
 	tableName := xid.New().String()
 
 	err := db.CreateTable(tableName, table).Run()
+
 	if err != nil {
 		return "", err
 	}
