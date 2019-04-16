@@ -1,6 +1,6 @@
-package main
+package tutorials
 
-import "fmt"
+// import "fmt"
 
 // func fact(n int) int {
 //     if n == 0 {
@@ -20,6 +20,6 @@ func doFact(n int, result int) int {
 	return doFact(n-1, n*result)
 }
 
-func main() {
-	fmt.Println(fact(7))
-}
+// func main() {
+// 	fmt.Println(fact(7))
+// }
