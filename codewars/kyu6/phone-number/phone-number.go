@@ -1,19 +1,18 @@
 package phonenumber
 
 import (
-	"strconv"
 	"log"
+	"strconv"
 	"strings"
 )
 
 func CreatePhoneNumber(numbers [10]uint) string {
 	numbersString := make([]string, 10)
 	for i, _ := range numbersString {
-	log.Println(strconv.FormatUint(numbers[i], 16))
-		numbersString[i] = string(numbers[i])
+		numbersString[i] = string(strconv.Itoa(int(numbers[i])))
 	}
 
 	log.Println(numbersString)
-	log.Println(strings.Join(numbersString[0:2], ""))
+	log.Println(strings.Join(numbersString[0:3], ""))
 	return ""
 }
