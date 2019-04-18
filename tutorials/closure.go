@@ -1,5 +1,4 @@
-// go run tutorials/closure.go
-package main
+package tutorials
 
 import (
 	"fmt"
@@ -15,7 +14,8 @@ func intSeq() func() int {
 		return i
 	}
 }
-func main() {
+
+func closure() {
 	nextInt := intSeq()
 
 	fmt.Println(nextInt())

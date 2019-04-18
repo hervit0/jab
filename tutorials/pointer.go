@@ -1,4 +1,5 @@
-package main
+package tutorials
+
 import "fmt"
 
 func zeroval(ival int) {
@@ -8,7 +9,7 @@ func zeroval(ival int) {
 func zeroptr(iptr *int) {
     *iptr = 0
 }
-func main() {
+func pointers() {
     i := 1
 		fmt.Println("initial:", i)
 

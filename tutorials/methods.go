@@ -1,4 +1,4 @@
-package main
+package tutorials
 
 import "fmt"
 type rect struct {
@@ -12,7 +12,7 @@ func (r *rect) area() int {
 func (r rect) perim() int {
     return 2*r.width + 2*r.height
 }
-func main() {
+func methods() {
     r := rect{width: 10, height: 5}
 
     fmt.Println("area: ", r.area())
