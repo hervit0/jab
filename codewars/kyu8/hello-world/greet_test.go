@@ -1,19 +1,20 @@
-// TODO: replace with your own tests (TDD). An example to get you started is included below.
-// Ginkgo BDD Testing Framework <http://onsi.github.io/ginkgo></http:>
-// Gomega Matcher Library <http://onsi.github.io/gomega></http:>
-
 package helloworld
 
 import (
-  "testing"
+	"testing"
 
 	. "github.com/onsi/ginkgo"
-  . "github.com/onsi/gomega"
+	. "github.com/onsi/gomega"
 )
 
+func Test(t *testing.T) {
+	RegisterFailHandler(Fail)
+	RunSpecs(t, "Add that block and the 'testing' framework in the import")
+}
+
 func TestGreet(t *testing.T) {
-  RegisterFailHandler(Fail)
-  RunSpecs(t, "Add that block and the 'testing' framework in the import")
+	RegisterFailHandler(Fail)
+	RunSpecs(t, "Add that block and the 'testing' framework in the import")
 }
 
 var _ = Describe("Example Tests", func() {
