@@ -1,8 +1,23 @@
 package consecutive
 
+import (
+	"strings"
+)
+
 func LongestConsec(chain []string, k int) string {
-	if len(chain) == 0 || k > len(chain) || k <= 0 {
+	chainLength := len(chain)
+	if chainLength == 0 || k > chainLength || k <= 0 {
 		return ""
 	}
-	return "lol"
+
+	longestConsecutiveChain := ""
+	for n := 0; n <= chainLength-k; n++ {
+		subChain := strings.Join(chain[n:n+k], "")
+
+		if len(subChain) > len(longestConsecutiveChain) {
+			longestConsecutiveChain = subChain
+		}
+	}
+
+	return longestConsecutiveChain
 }
