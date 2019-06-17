@@ -3,6 +3,7 @@ package main
 import (
     "fmt"
     "sync"
+	// "time"
 )
 
 func threadedFunction(upperBound int) {
@@ -38,6 +39,15 @@ func threadedFunctionWithChan(sendingChan chan<- int, waitingGroup *sync.WaitGro
     }
 }
 
+func sayhello(count int, wg *sync.WaitGroup, messages *chan int) {
+	defer wg.Done()
+    r := count * 2
+
+	fmt.Println("[Say Hello Routine] result computed: ", r)
+	*messages <- r
+	fmt.Println("[Say Hello Routine] sent message: ", r)
+}
+
 func main() {
     // messages := make(chan string, 42) Buffered to 42 messages
     messages := make(chan string)
@@ -48,20 +58,48 @@ func main() {
     threadedFunction(5)
     fmt.Scanln()
 
-    messagesChan := make(chan int)
+    // Another one
     var waitingGroup sync.WaitGroup
+    messagesChan := make(chan int)
     threadedFunctionWithChan(messagesChan, &waitingGroup, 5)
 
-    go func(wg *sync.WaitGroup, messages chan string) {
-		fmt.Println("waiting")
+    go func(wg *sync.WaitGroup, messages chan int) {
+		fmt.Println("[Closer routine] Waiting")
 		wg.Wait()
-		fmt.Println("done waiting")
-		close(messagesChan)
-    }(&waitingGroup, messages)
+        fmt.Println("[Closer routine] Done waiting")
 
-    // for msg := range messagesChan {
-    //     fmt.Println(msg)
+		close(messagesChan)
+    }(&waitingGroup, messagesChan)
+    fmt.Scanln()
+
+    // Another one
+    var wg sync.WaitGroup
+    msgChan := make(chan int)
+    s := make([]int, 10)
+
+	for x := 1; x <= len(s); x++ {
+        wg.Add(1)
+		go sayhello(x, &wg, &msgChan)
+    }
+
+    go func(wg *sync.WaitGroup, msgChan chan int) {
+		fmt.Println("[Closer routine] Waiting")
+		wg.Wait()
+        fmt.Println("[Closer routine] Done waiting")
+		close(msgChan)
+    }(&wg, msgChan)
+
+    // for msg := range msgChan {
+        // Interesting behavior with a timer - it's a blocking op
+	    // time.Sleep(time.Millisecond * time.Duration(1000 * 5))
+    //     fmt.Println("[Channel Reader]", msg)
     // }
+    select {
+    case msg := <-msgChan:
+        fmt.Println("[Select Fire] received: ", msg)
+    default:
+        fmt.Println("[Select Fire] Nein!")
+    }
 
     // msgCollection := <-messagesChan
     // waitingGroup.Wait()
