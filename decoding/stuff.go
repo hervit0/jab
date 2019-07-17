@@ -13,6 +13,15 @@ type parameter struct {
 	value  []byte
 }
 
+type cli struct {
+	name                    string
+	oddness                 bool
+	addressNature           uint
+	presentationRestriction uint
+	screening               uint
+	digits                  uint
+}
+
 // https://golang.org/pkg/bytes/
 func main() {
 	ss := "AQYBEQcCYAAJAQoCAQMECIOQUWRiGUAPCgcDE3eGSBAX/QcDkHeGSBAX/gIBAMAIBgMQd4ZIEBc5CPTRwMD+wP3A"
@@ -35,7 +44,7 @@ func main() {
 	for _, b := range decoded {
 		switch parameterType {
 		case "code":
-			currentParameter.code = uint8(b)
+			currentParameter.code = b
 			parameterType = "length"
 		case "length":
 			currentParameter.length = uint8(b)
@@ -57,6 +66,16 @@ func main() {
 	}
 
 	fmt.Println(parameters)
+	fmt.Println(bytes.Contains([]byte{0xc0, 0xfd}, []byte{0xfa}))
+
+	knwonClis := []byte{0xfd, 0xc0, 0x0a}
+	clisParameters := make([]parameter, 0)
+	for _, parameter := range parameters {
+		if bytes.Contains(knwonClis, []byte{parameter.code}) {
+			clisParameters = append(clisParameters, parameter)
+		}
+	}
+	fmt.Println(clisParameters)
 
 	aByte := byte(0xc0)
 	asInt := uint8(aByte)
