@@ -23,6 +23,48 @@ var _ = Describe("Sum", func() {
 			result := daily.Sum(list, sum)
 
 			// Then
+			Expect(result).To(Equal(true))
+		})
+	})
+
+	Context("When there is no match", func() {
+		It("returns true", func() {
+			//Given
+			list := []int{10, 15, 3, 8}
+			sum := 17
+
+			// When
+			result := daily.Sum(list, sum)
+
+			// Then
+			Expect(result).To(Equal(false))
+		})
+	})
+
+	Context("When there is match - target 16", func() {
+		It("returns true", func() {
+			//Given
+			list := []int{8, 10, 15, 8}
+			sum := 16
+
+			// When
+			result := daily.Sum(list, sum)
+
+			// Then
+			Expect(result).To(Equal(true))
+		})
+	})
+
+	Context("When there is no match - target 16", func() {
+		It("returns true", func() {
+			//Given
+			list := []int{8, 10, 15, 3}
+			sum := 16
+
+			// When
+			result := daily.Sum(list, sum)
+
+			// Then
 			Expect(result).To(Equal(false))
 		})
 	})
