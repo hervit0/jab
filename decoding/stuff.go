@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/binary"
 	"fmt"
+	"strconv"
 )
 
 type parameter struct {
@@ -23,7 +24,14 @@ type cli struct {
 }
 
 // https://golang.org/pkg/bytes/
-func main() {
+func main2() {
+	i, err := strconv.ParseInt("00000011", 7, 64)
+	if err != nil {
+		fmt.Println("decode error:", err)
+		return
+	}
+	fmt.Println("Array of bytes: ", i)
+
 	ss := "AQYBEQcCYAAJAQoCAQMECIOQUWRiGUAPCgcDE3eGSBAX/QcDkHeGSBAX/gIBAMAIBgMQd4ZIEBc5CPTRwMD+wP3A"
 	fmt.Println("ss:", ss)
 
@@ -68,14 +76,15 @@ func main() {
 	fmt.Println(parameters)
 	fmt.Println(bytes.Contains([]byte{0xc0, 0xfd}, []byte{0xfa}))
 
-	knwonClis := []byte{0xfd, 0xc0, 0x0a}
+	knownClis := []byte{0xfd, 0xc0, 0x0a}
 	clisParameters := make([]parameter, 0)
 	for _, parameter := range parameters {
-		if bytes.Contains(knwonClis, []byte{parameter.code}) {
+		if bytes.Contains(knownClis, []byte{parameter.code}) {
 			clisParameters = append(clisParameters, parameter)
 		}
 	}
 	fmt.Println(clisParameters)
+	// [{10 7 [3 19 119 134 72 16 23]} {253 7 [3 144 119 134 72 16 23]} {192 8 [6 3 16 119 134 72 16 23]}]
 
 	aByte := byte(0xc0)
 	asInt := uint8(aByte)
